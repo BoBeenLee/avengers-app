@@ -1,0 +1,30 @@
+name: Android Release
+on:
+  push:
+    branches:
+      - "release*"
+
+jobs:
+  apk:
+    name: Generate APK
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up JDK 1.8 And Install dependencies
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p && npm install
+
+      - name: Grant chmod
+        run: chmod 755 ./packages/app/android/gradlew
+
+      - name: Assemble app debug APK
+        run: cd ./packages/app/android && ./gradlew app:assembleRelease
+
+      - name: Upload app APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release
+          path: packages/app/android/app/build/outputs/apk/release/app-release.apk

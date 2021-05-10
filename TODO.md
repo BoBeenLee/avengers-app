@@ -1,0 +1,32 @@
+# Todos
+
+- [ ] App과 Web Webview 통신 구조
+  - RN bridge와 유사하지 않을까 생각함.
+- [x] Shared 패키지 Configs, Components, State management, Utils
+
+- [ ] Tests:
+  - [partial] unit tests
+  - [ ] e2e tests (puppetteer? / cypress? / Detox? )
+- [ ] Documentation
+  - [x] Directory structure
+  - [x] Getting Started
+  - [ ] Deployment
+- [ ] Builds / releases
+  - [x] auto-update version(s)
+  - [partial] auto-update changelogs
+  - [ ] Fastlane CI
+    - Feature Review를 하기 위한 설정
+      - [ ] IOS AppDistrubution
+      - [ ] Android AppDistrubution
+    - [ ] AppStore, GoogleStore Delivery
+  - Github workflow
+    - [x] Build, Test
+    - [ ] Storybook
+    - [ ] Release
+      - IOS Fastlane
+      - Android Fastlane
+- [ ] Eletron Setting
+  - [ ] Webpack
+  - [ ] React Router
+- [ ] Force git commit to follow a certain schema
+- [x] remove lodash

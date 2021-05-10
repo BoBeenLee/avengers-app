@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "noEmit": true,
+    "module": "CommonJS",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2018"
+  }
+}
