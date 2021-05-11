@@ -21,7 +21,7 @@ jobs:
           APP_DISPLAY_NAME: "RNApp"
           OUTPUT_NAME: "RNApp"
           OUTPUT_SUFFIX: ""
-          PRODUCT_BUNDLE_IDENTIFIER: "kr.rnapp.apptest"
+          PRODUCT_BUNDLE_IDENTIFIER: "com.avengers.avengersapp"
           XCODE_TEAM_ID: "787Q6972XA"
           XCODE_SCHEME: "RNApp"
           XCODE_PROJECT_NAME: "RNApp"

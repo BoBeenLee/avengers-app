@@ -1,4 +1,4 @@
-package kr.rnapp.apptest;
+package com.avengers.avengersapp;
 
 import android.app.Application;
 import android.content.Context;
@@ -12,7 +12,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.List;
 import java.util.Arrays;
 
-import kr.rnapp.apptest.BuildConfig;
+import com.avengers.avengersapp.BuildConfig;
 
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;

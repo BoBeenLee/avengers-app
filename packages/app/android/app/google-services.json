@@ -1,77 +1,40 @@
 {
   "project_info": {
-    "project_number": "757274443049",
-    "firebase_url": "https://myspace-c3805.firebaseio.com",
-    "project_id": "myspace-c3805",
-    "storage_bucket": "myspace-c3805.appspot.com"
+    "project_number": "425996259641",
+    "project_id": "avengersapp-8ad21",
+    "storage_bucket": "avengersapp-8ad21.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:757274443049:android:9df17e3cc9fc9a2285cb38",
+        "mobilesdk_app_id": "1:425996259641:android:fd40135290b9976cf658e8",
         "android_client_info": {
-          "package_name": "kr.rnapp.app"
+          "package_name": "com.avengers.avengersapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "757274443049-6tltl5ms9mhntouir159jsa12mrl7edb.apps.googleusercontent.com",
+          "client_id": "425996259641-bemsoqv44ln7ach1tobq3blgqv7d726s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDKeMRkYFISOh-8N47Q129sQQ28bjJZQEg"
+          "current_key": "AIzaSyCZGhPz3oyi0zgUQCq_Ftyzv3v8QZ1IutY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "757274443049-6tltl5ms9mhntouir159jsa12mrl7edb.apps.googleusercontent.com",
+              "client_id": "425996259641-bemsoqv44ln7ach1tobq3blgqv7d726s.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "757274443049-4q150gq59rn0f1geevo0688mnn672vdm.apps.googleusercontent.com",
+              "client_id": "425996259641-vl8g3kpce1ld65k3dovsdnc6vjm07asu.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "kr.rnapp.app"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:757274443049:android:5c127cdb4d9ce7ad85cb38",
-        "android_client_info": {
-          "package_name": "kr.rnapp.apptest"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "757274443049-6tltl5ms9mhntouir159jsa12mrl7edb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDKeMRkYFISOh-8N47Q129sQQ28bjJZQEg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "757274443049-6tltl5ms9mhntouir159jsa12mrl7edb.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "757274443049-4q150gq59rn0f1geevo0688mnn672vdm.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "kr.rnapp.app"
+                "bundle_id": "com.avengers.avengersapp"
               }
             }
           ]

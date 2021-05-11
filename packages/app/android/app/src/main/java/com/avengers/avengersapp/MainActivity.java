@@ -1,9 +1,9 @@
-package kr.rnapp.apptest;
+package com.avengers.avengersapp;
 
 import android.os.Build;
 import android.os.Bundle;
 
-import kr.rnapp.apptest.MainApplication;
+import com.avengers.avengersapp.MainApplication;
 
 import com.reactnativenavigation.NavigationActivity;
 import android.content.Intent;
