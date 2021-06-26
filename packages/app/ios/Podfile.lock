@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.3)
   - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
@@ -138,25 +139,48 @@ PODS:
     - GoogleUtilities/Logger
   - JWT (3.0.0-beta.12):
     - Base64 (~> 1.1.2)
-  - kakao-login (2.10.2):
-    - KakaoOpenSDK (~> 1.21.0)
+  - kakao-login (3.3.2):
+    - KakaoSDK (~> 2.4.0)
+    - KakaoSDKAuth (~> 2.4.0)
+    - KakaoSDKCommon (~> 2.4.0)
+    - KakaoSDKTalk (~> 2.4.0)
+    - KakaoSDKUser (~> 2.4.0)
     - React
-  - KakaoOpenSDK (1.21.1):
-    - KakaoOpenSDK/KakaoCommon (= 1.21.1)
-    - KakaoOpenSDK/KakaoLink (= 1.21.1)
-    - KakaoOpenSDK/KakaoMessageTemplate (= 1.21.1)
-    - KakaoOpenSDK/KakaoNavi (= 1.21.1)
-    - KakaoOpenSDK/KakaoOpenSDK (= 1.21.1)
-    - KakaoOpenSDK/KakaoPlusFriend (= 1.21.1)
-  - KakaoOpenSDK/KakaoCommon (1.21.1)
-  - KakaoOpenSDK/KakaoLink (1.21.1):
-    - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoMessageTemplate (1.21.1)
-  - KakaoOpenSDK/KakaoNavi (1.21.1):
-    - KakaoOpenSDK/KakaoCommon
-  - KakaoOpenSDK/KakaoOpenSDK (1.21.1)
-  - KakaoOpenSDK/KakaoPlusFriend (1.21.1):
-    - KakaoOpenSDK/KakaoCommon
+  - KakaoSDK (2.4.1):
+    - KakaoSDKAuth (= 2.4.1)
+    - KakaoSDKCommon (= 2.4.1)
+    - KakaoSDKLink (= 2.4.1)
+    - KakaoSDKNavi (= 2.4.1)
+    - KakaoSDKStory (= 2.4.1)
+    - KakaoSDKTalk (= 2.4.1)
+    - KakaoSDKTemplate (= 2.4.1)
+    - KakaoSDKUser (= 2.4.1)
+  - KakaoSDKAuth (2.4.1):
+    - KakaoSDKCommon (= 2.4.1)
+  - KakaoSDKCommon (2.4.1):
+    - KakaoSDKCommon/Common (= 2.4.1)
+    - KakaoSDKCommon/Network (= 2.4.1)
+  - KakaoSDKCommon/Common (2.4.1)
+  - KakaoSDKCommon/Network (2.4.1):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.4.1)
+  - KakaoSDKLink (2.4.1):
+    - KakaoSDKCommon (= 2.4.1)
+    - KakaoSDKTemplate (= 2.4.1)
+  - KakaoSDKNavi (2.4.1):
+    - KakaoSDKCommon/Common (= 2.4.1)
+  - KakaoSDKStory (2.4.1):
+    - KakaoSDKAuth (= 2.4.1)
+    - KakaoSDKCommon (= 2.4.1)
+  - KakaoSDKTalk (2.4.1):
+    - KakaoSDKAuth (= 2.4.1)
+    - KakaoSDKCommon (= 2.4.1)
+    - KakaoSDKTemplate (= 2.4.1)
+  - KakaoSDKTemplate (2.4.1):
+    - KakaoSDKCommon/Common (= 2.4.1)
+  - KakaoSDKUser (2.4.1):
+    - KakaoSDKAuth (= 2.4.1)
+    - KakaoSDKCommon (= 2.4.1)
   - lottie-ios (3.1.8)
   - lottie-react-native (4.0.2):
     - lottie-ios (~> 3.1.8)
@@ -443,6 +467,8 @@ PODS:
     - React-RCTText
   - rn-fetch-blob (0.11.2):
     - React-Core
+  - RNAppleAuthentication (2.1.2):
+    - React-Core
   - RNCAsyncStorage (1.12.1):
     - React-Core
   - RNCClipboard (1.5.1):
@@ -561,6 +587,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
+  - "RNAppleAuthentication (from `../node_modules/@invertase/react-native-apple-authentication`)"
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-community/clipboard`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
@@ -581,6 +608,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Base64
     - boost-for-react-native
     - Firebase
@@ -598,7 +626,15 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - JWT
-    - KakaoOpenSDK
+    - KakaoSDK
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKLink
+    - KakaoSDKNavi
+    - KakaoSDKStory
+    - KakaoSDKTalk
+    - KakaoSDKTemplate
+    - KakaoSDKUser
     - nanopb
     - PromisesObjC
     - SSZipArchive
@@ -680,6 +716,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-navigation"
   rn-fetch-blob:
     :path: "../node_modules/rn-fetch-blob"
+  RNAppleAuthentication:
+    :path: "../node_modules/@invertase/react-native-apple-authentication"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCClipboard:
@@ -716,6 +754,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
@@ -739,8 +778,16 @@ SPEC CHECKSUMS:
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   JWT: 9b5c05abbcc1a0e69c3c91e1655b3387fc7e581d
-  kakao-login: 8d60f757a69784b797395cc2e284a18c85852d7a
-  KakaoOpenSDK: 7a7b728491fc199bf2186fec5bbf2c70ba14f474
+  kakao-login: f545fda326cdf9419645abb7c8f36ec97132c26b
+  KakaoSDK: 1e80d6877c0eac6a310f93c73fb15ca56c05f2bd
+  KakaoSDKAuth: fcba1c9ede431683f5bdd84c835a96981cb115a5
+  KakaoSDKCommon: 0912aa0c7db051ae8dc07a35395cf644f7728f95
+  KakaoSDKLink: fe6f2ca19092836f8af2a9d7fabe60fd67740104
+  KakaoSDKNavi: c138bce799ebdac6811b56453de5326e49ca5925
+  KakaoSDKStory: cb33db9a04c7c44746b3662991234f52ab61961a
+  KakaoSDKTalk: 749828662e4ac7a9f17bb1664b58526da289d18c
+  KakaoSDKTemplate: 8bb288765bfc0195631da809b2d707f09495acdf
+  KakaoSDKUser: 11955811d99d1ff1f1dfd5428afe69937e31ccef
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 4dff8fe8d10ddef9e7880e770080f4a56121397e
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
@@ -774,6 +821,7 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   ReactNativeNavigation: ff4873e683e5f23822af097e4fe643c82469c3d2
   rn-fetch-blob: f525a73a78df9ed5d35e67ea65e79d53c15255bc
+  RNAppleAuthentication: e95bcfbd044013667f35c5ca20ae17d39500c009
   RNCAsyncStorage: cb9a623793918c6699586281f0b51cbc38f046f9
   RNCClipboard: 5e299c6df8e0c98f3d7416b86ae563d3a9f768a3
   RNDeviceInfo: 49f6d50f861c7810fac2dd9b71cfb56cc1940e14

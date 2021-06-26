@@ -1,8 +1,13 @@
 import AsyncStorage from "@react-native-community/async-storage";
 
 import { once, isJSON, isEmpty, defaultNumber } from "src/utils/common";
+import { AUTH_PROVIDER } from "src/stores/AuthStore";
 
-type StorageType = "ACCESS_TOKEN" | "REFRESH_TOKEN" | "test";
+export type StorageType =
+  | "ACCESS_ID"
+  | "ACCESS_TOKEN"
+  | "PROVIDER_TYPE"
+  | "SHARED_ACCESS_ID";
 
 function storageFactory(
   setItem: (key: string, value: string) => Promise<any>,
@@ -66,14 +71,37 @@ function storageFactory(
   };
 
   const setStorages = {
-    saveTest: async (value: string) => {
-      await setStorageItem("test", value);
+    saveToken: async ({
+      provider,
+      accessId,
+      accessToken,
+      refreshToken
+    }: {
+      provider: AUTH_PROVIDER;
+      accessId: string;
+      accessToken: string;
+      refreshToken: string;
+    }) => {
+      await Promise.all([
+        setStorageItem("PROVIDER_TYPE", provider),
+        setStorageItem("ACCESS_ID", accessId),
+        setStorageItem("ACCESS_TOKEN", accessToken)
+      ]);
     }
   };
 
   const getStorages = {
-    test: () => {
-      return getStringWithDefault("test", "");
+    getToken: async () => {
+      const [provider, accessId, accessToken] = await Promise.all([
+        getStringWithDefault("PROVIDER_TYPE", "NONE"),
+        getStringWithDefault("ACCESS_ID", ""),
+        getStringWithDefault("ACCESS_TOKEN", "")
+      ]);
+      return {
+        provider,
+        accessId,
+        accessToken
+      };
     }
   };
 

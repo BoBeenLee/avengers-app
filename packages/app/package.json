@@ -49,6 +49,7 @@
     "bundlesize": "react-native-bundle-visualizer --entry-file ./index.ios.js"
   },
   "dependencies": {
+    "@invertase/react-native-apple-authentication": "^2.1.2",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/clipboard": "^1.5.1",
     "@react-native-firebase/analytics": "^11.4.1",
@@ -58,7 +59,7 @@
     "@react-native-firebase/iid": "^11.4.1",
     "@react-native-firebase/messaging": "^11.4.1",
     "@react-native-firebase/remote-config": "^11.4.1",
-    "@react-native-seoul/kakao-login": "^2.1.0",
+    "@react-native-seoul/kakao-login": "^3.3.2",
     "axios": "^0.19.2",
     "hoist-non-react-statics": "^3.3.0",
     "i18next": "^17.0.10",

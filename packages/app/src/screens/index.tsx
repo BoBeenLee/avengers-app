@@ -11,6 +11,7 @@ import withStore from "src/hocs/withStore";
 import { SCREEN_IDS } from "src/screens/constant";
 import SplashScreen from "src/screens/SplashScreen";
 import DeveloperScreen from "src/screens/DeveloperScreen";
+import SignInScreen from "src/screens/SignInScreen";
 import { getRootStore } from "src/stores/Store";
 import { identity } from "src/utils/common";
 
@@ -52,6 +53,10 @@ const screens: IScreenProps[] = [
   {
     Component: DeveloperScreen,
     id: SCREEN_IDS.DeveloperScreen
+  },
+  {
+    Component: SignInScreen,
+    id: SCREEN_IDS.SignInScreen
   }
 ];
 

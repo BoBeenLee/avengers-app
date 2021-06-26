@@ -12,7 +12,6 @@
 #import <React/RCTBundleURLProvider.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 #import "RNSplashScreen.h"
-#import <KakaoOpenSDK/KakaoOpenSDK.h>
 
 @import Firebase;
 @implementation AppDelegate
@@ -44,31 +43,9 @@
 #endif
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-  if ([KOSession isKakaoAccountLoginCallback:url]) {
-    return [KOSession handleOpenURL:url];
-  }
-  return false;
-}
 
 - (NSArray<id<RCTBridgeModule>> *)extraModulesForBridge:(RCTBridge *)bridge {
   return [ReactNativeNavigation extraModulesForBridge:bridge];
-}
-
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *, id> *)options {
-    if ([KOSession isKakaoAccountLoginCallback:url]) {
-      return [KOSession handleOpenURL:url];
-    }
-    return false;
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-  [KOSession handleDidBecomeActive];
 }
 
 @end

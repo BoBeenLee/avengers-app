@@ -6,11 +6,13 @@ import CodePushStore from "src/stores/CodePushStore";
 import { initialize as initializeAnalytics } from "src/configs/analytics";
 import TodoStore from "src/stores/TodoStore";
 import ToastStore from "src/stores/ToastStore";
+import AuthStore from "src/stores/AuthStore";
 import env from "src/configs/env";
 
 const Store = types
   .model({
     appStateStatus: types.frozen<AppStateStatus>(AppState.currentState),
+    authStore: types.optional(AuthStore, {}),
     codePushStore: types.optional(CodePushStore, {}),
     todoStore: types.optional(TodoStore, {}),
     toastStore: types.optional(ToastStore, {})
@@ -21,7 +23,10 @@ const Store = types
     };
 
     const initializeApp = flow(function*() {
-      yield self.codePushStore.initialize();
+      yield Promise.all([
+        self.codePushStore.initialize(),
+        self.authStore.initialize()
+      ]);
       initializeAnalytics();
     });
 
