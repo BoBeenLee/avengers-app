@@ -34,10 +34,10 @@ module.exports = (async () => {
     resolver: {
       assetExts: assetExts.filter(ext => ext !== "svg"),
       sourceExts: [...sourceExts, "svg"],
-      extraNodeModules,
-      blacklistRE: exclusionList([/..\/shared\/node_modules\/react\/.*/, /..\/shared\/node_modules\/react-dom\/.*/])
+      // extraNodeModules,
+      // blacklistRE: exclusionList([/..\/shared\/node_modules\/react\/.*/, /..\/shared\/node_modules\/react-dom\/.*/])
     },
-    watchFolders: [path.resolve(__dirname, "../shared/lib")],
+    // watchFolders: [path.resolve(__dirname, "../shared/lib")],
     projectRoot: path.resolve(__dirname)
   };
 })();

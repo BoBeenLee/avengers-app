@@ -4,10 +4,8 @@ import { AppState, AppStateStatus } from "react-native";
 import { isDevelopment } from "src/configs/env";
 import CodePushStore from "src/stores/CodePushStore";
 import { initialize as initializeAnalytics } from "src/configs/analytics";
-import TodoStore from "@shared/stores/TodoStore";
-import ToastStore from "@shared/stores/ToastStore";
-import { initialize as initializeRequestAPI } from "@shared/apis/requestAPI";
-import { initialize as initializeServer } from "@shared/apis/__mocks__/server";
+import TodoStore from "src/stores/TodoStore";
+import ToastStore from "src/stores/ToastStore";
 import env from "src/configs/env";
 
 const Store = types
@@ -23,10 +21,6 @@ const Store = types
     };
 
     const initializeApp = flow(function*() {
-      if (isDevelopment()) {
-        initializeServer();
-      }
-      initializeRequestAPI(env.API_URL);
       yield self.codePushStore.initialize();
       initializeAnalytics();
     });

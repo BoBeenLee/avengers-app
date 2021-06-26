@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import styled from "styled-components/native";
-import { Regular12 } from "@shared/components/text/Typographies";
+import { Regular12 } from "src/components/text/Typographies";
 
 const TouchabledView = styled.TouchableOpacity`
   padding: 40px;

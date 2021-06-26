@@ -1,7 +1,6 @@
 import hoistNonReactStatic from "hoist-non-react-statics";
 import { Provider } from "mobx-react";
 import React from "react";
-// import "mobx-react-lite/batchingForReactDom";
 
 const withStore = (store: any) => <P extends object>(
   TargetComponent: React.ComponentType<P>

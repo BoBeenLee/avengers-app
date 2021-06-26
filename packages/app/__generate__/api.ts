@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Shecret API
  * Shecret API 명세
@@ -12,10 +13,11 @@
  */
 
 
-import * as globalImportUrl from 'url';
 import { Configuration } from './configuration';
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
+// @ts-ignore
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
@@ -273,6 +275,82 @@ export interface LoginResponse {
 /**
  * 
  * @export
+ * @interface Nickname
+ */
+export interface Nickname {
+    /**
+     * 
+     * @type {string}
+     * @memberof Nickname
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Nickname
+     */
+    id?: number;
+}
+/**
+ * 
+ * @export
+ * @interface NicknameDto
+ */
+export interface NicknameDto {
+    /**
+     * 
+     * @type {NicknamePrefix}
+     * @memberof NicknameDto
+     */
+    nicknamePrefix?: NicknamePrefix;
+    /**
+     * 
+     * @type {Nickname}
+     * @memberof NicknameDto
+     */
+    nickname?: Nickname;
+}
+/**
+ * 
+ * @export
+ * @interface NicknamePrefix
+ */
+export interface NicknamePrefix {
+    /**
+     * 
+     * @type {string}
+     * @memberof NicknamePrefix
+     */
+    prefix?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof NicknamePrefix
+     */
+    id?: number;
+}
+/**
+ * 
+ * @export
+ * @interface NicknameUpdateRequest
+ */
+export interface NicknameUpdateRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof NicknameUpdateRequest
+     */
+    prefixId?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof NicknameUpdateRequest
+     */
+    nicknameId?: number;
+}
+/**
+ * 
+ * @export
  * @interface Notice
  */
 export interface Notice {
@@ -408,6 +486,12 @@ export interface User {
     verify?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof User
+     */
+    nickname?: string;
+    /**
+     * 
      * @type {Array<Article>}
      * @memberof User
      */
@@ -459,13 +543,13 @@ export interface User {
      * @type {boolean}
      * @memberof User
      */
-    credentialsNonExpired?: boolean;
+    accountNonLocked?: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof User
      */
-    accountNonLocked?: boolean;
+    credentialsNonExpired?: boolean;
 }
 
 /**
@@ -483,15 +567,15 @@ export const Class01APIV1ApiAxiosParamCreator = function (configuration?: Config
          */
         login: async (loginRequest: LoginRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'loginRequest' is not null or undefined
-            if (loginRequest === null || loginRequest === undefined) {
-                throw new RequiredError('loginRequest','Required parameter loginRequest was null or undefined when calling login.');
-            }
+            assertParamExists('login', 'loginRequest', loginRequest)
             const localVarPath = `/v1/users/signin`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -500,16 +584,13 @@ export const Class01APIV1ApiAxiosParamCreator = function (configuration?: Config
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof loginRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(loginRequest !== undefined ? loginRequest : {}) : (loginRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(loginRequest, localVarRequestOptions, configuration)
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -522,15 +603,15 @@ export const Class01APIV1ApiAxiosParamCreator = function (configuration?: Config
          */
         signup: async (signupRequest: SignupRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'signupRequest' is not null or undefined
-            if (signupRequest === null || signupRequest === undefined) {
-                throw new RequiredError('signupRequest','Required parameter signupRequest was null or undefined when calling signup.');
-            }
+            assertParamExists('signup', 'signupRequest', signupRequest)
             const localVarPath = `/v1/users/signup`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -539,16 +620,13 @@ export const Class01APIV1ApiAxiosParamCreator = function (configuration?: Config
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof signupRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(signupRequest !== undefined ? signupRequest : {}) : (signupRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(signupRequest, localVarRequestOptions, configuration)
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -560,6 +638,7 @@ export const Class01APIV1ApiAxiosParamCreator = function (configuration?: Config
  * @export
  */
 export const Class01APIV1ApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = Class01APIV1ApiAxiosParamCreator(configuration)
     return {
         /**
          * 모든 필드는 필수값임.
@@ -569,11 +648,8 @@ export const Class01APIV1ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async login(loginRequest: LoginRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>> {
-            const localVarAxiosArgs = await Class01APIV1ApiAxiosParamCreator(configuration).login(loginRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.login(loginRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * /v1/authentications/{deviceId} API를 통하여 얻은 token으로 회원가입 시도해야함.
@@ -583,11 +659,8 @@ export const Class01APIV1ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async signup(signupRequest: SignupRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await Class01APIV1ApiAxiosParamCreator(configuration).signup(signupRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.signup(signupRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -597,6 +670,7 @@ export const Class01APIV1ApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const Class01APIV1ApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = Class01APIV1ApiFp(configuration)
     return {
         /**
          * 모든 필드는 필수값임.
@@ -606,7 +680,7 @@ export const Class01APIV1ApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         login(loginRequest: LoginRequest, options?: any): AxiosPromise<LoginResponse> {
-            return Class01APIV1ApiFp(configuration).login(loginRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.login(loginRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * /v1/authentications/{deviceId} API를 통하여 얻은 token으로 회원가입 시도해야함.
@@ -616,7 +690,7 @@ export const Class01APIV1ApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         signup(signupRequest: SignupRequest, options?: any): AxiosPromise<number> {
-            return Class01APIV1ApiFp(configuration).signup(signupRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.signup(signupRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -651,7 +725,6 @@ export class Class01APIV1Api extends BaseAPI {
     public signup(signupRequest: SignupRequest, options?: any) {
         return Class01APIV1ApiFp(this.configuration).signup(signupRequest, options).then((request) => request(this.axios, this.basePath));
     }
-
 }
 
 
@@ -670,15 +743,15 @@ export const Class02APIApiAxiosParamCreator = function (configuration?: Configur
          */
         findTodayAuthorizeCount: async (deviceId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            if (deviceId === null || deviceId === undefined) {
-                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling findTodayAuthorizeCount.');
-            }
+            assertParamExists('findTodayAuthorizeCount', 'deviceId', deviceId)
             const localVarPath = `/v1/authentications/{deviceId}/today-count`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -689,14 +762,12 @@ export const Class02APIApiAxiosParamCreator = function (configuration?: Configur
 
 
     
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -709,30 +780,28 @@ export const Class02APIApiAxiosParamCreator = function (configuration?: Configur
          */
         tryAuthentication: async (deviceId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'deviceId' is not null or undefined
-            if (deviceId === null || deviceId === undefined) {
-                throw new RequiredError('deviceId','Required parameter deviceId was null or undefined when calling tryAuthentication.');
-            }
+            assertParamExists('tryAuthentication', 'deviceId', deviceId)
             const localVarPath = `/v1/authentications/{deviceId}`
                 .replace(`{${"deviceId"}}`, encodeURIComponent(String(deviceId)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -744,6 +813,7 @@ export const Class02APIApiAxiosParamCreator = function (configuration?: Configur
  * @export
  */
 export const Class02APIApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = Class02APIApiAxiosParamCreator(configuration)
     return {
         /**
          * 마지막 24시간동안 인증을 시도한 횟수.
@@ -753,11 +823,8 @@ export const Class02APIApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async findTodayAuthorizeCount(deviceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await Class02APIApiAxiosParamCreator(configuration).findTodayAuthorizeCount(deviceId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findTodayAuthorizeCount(deviceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 회원가입시 넘겨줘야 하는 토큰을 발급받는 API
@@ -767,11 +834,8 @@ export const Class02APIApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async tryAuthentication(deviceId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthenticationToken>> {
-            const localVarAxiosArgs = await Class02APIApiAxiosParamCreator(configuration).tryAuthentication(deviceId, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tryAuthentication(deviceId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -781,6 +845,7 @@ export const Class02APIApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const Class02APIApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = Class02APIApiFp(configuration)
     return {
         /**
          * 마지막 24시간동안 인증을 시도한 횟수.
@@ -790,7 +855,7 @@ export const Class02APIApiFactory = function (configuration?: Configuration, bas
          * @throws {RequiredError}
          */
         findTodayAuthorizeCount(deviceId: string, options?: any): AxiosPromise<number> {
-            return Class02APIApiFp(configuration).findTodayAuthorizeCount(deviceId, options).then((request) => request(axios, basePath));
+            return localVarFp.findTodayAuthorizeCount(deviceId, options).then((request) => request(axios, basePath));
         },
         /**
          * 회원가입시 넘겨줘야 하는 토큰을 발급받는 API
@@ -800,7 +865,7 @@ export const Class02APIApiFactory = function (configuration?: Configuration, bas
          * @throws {RequiredError}
          */
         tryAuthentication(deviceId: string, options?: any): AxiosPromise<AuthenticationToken> {
-            return Class02APIApiFp(configuration).tryAuthentication(deviceId, options).then((request) => request(axios, basePath));
+            return localVarFp.tryAuthentication(deviceId, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -835,7 +900,6 @@ export class Class02APIApi extends BaseAPI {
     public tryAuthentication(deviceId: string, options?: any) {
         return Class02APIApiFp(this.configuration).tryAuthentication(deviceId, options).then((request) => request(this.axios, this.basePath));
     }
-
 }
 
 
@@ -852,25 +916,25 @@ export const Class03ApiAxiosParamCreator = function (configuration?: Configurati
          */
         findFaqList: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/faqs`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -881,25 +945,25 @@ export const Class03ApiAxiosParamCreator = function (configuration?: Configurati
          */
         findNoticeList: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/notices`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -911,6 +975,7 @@ export const Class03ApiAxiosParamCreator = function (configuration?: Configurati
  * @export
  */
 export const Class03ApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = Class03ApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -918,11 +983,8 @@ export const Class03ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async findFaqList(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Faq>>> {
-            const localVarAxiosArgs = await Class03ApiAxiosParamCreator(configuration).findFaqList(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findFaqList(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -930,11 +992,8 @@ export const Class03ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async findNoticeList(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Notice>>> {
-            const localVarAxiosArgs = await Class03ApiAxiosParamCreator(configuration).findNoticeList(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findNoticeList(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -944,6 +1003,7 @@ export const Class03ApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const Class03ApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = Class03ApiFp(configuration)
     return {
         /**
          * 
@@ -951,7 +1011,7 @@ export const Class03ApiFactory = function (configuration?: Configuration, basePa
          * @throws {RequiredError}
          */
         findFaqList(options?: any): AxiosPromise<Array<Faq>> {
-            return Class03ApiFp(configuration).findFaqList(options).then((request) => request(axios, basePath));
+            return localVarFp.findFaqList(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -959,7 +1019,7 @@ export const Class03ApiFactory = function (configuration?: Configuration, basePa
          * @throws {RequiredError}
          */
         findNoticeList(options?: any): AxiosPromise<Array<Notice>> {
-            return Class03ApiFp(configuration).findNoticeList(options).then((request) => request(axios, basePath));
+            return localVarFp.findNoticeList(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -990,7 +1050,6 @@ export class Class03Api extends BaseAPI {
     public findNoticeList(options?: any) {
         return Class03ApiFp(this.configuration).findNoticeList(options).then((request) => request(this.axios, this.basePath));
     }
-
 }
 
 
@@ -1009,15 +1068,15 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
          */
         articleWrite: async (articleWriteRequest: ArticleWriteRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'articleWriteRequest' is not null or undefined
-            if (articleWriteRequest === null || articleWriteRequest === undefined) {
-                throw new RequiredError('articleWriteRequest','Required parameter articleWriteRequest was null or undefined when calling articleWrite.');
-            }
+            assertParamExists('articleWrite', 'articleWriteRequest', articleWriteRequest)
             const localVarPath = `/v1/articles`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -1026,16 +1085,13 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof articleWriteRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(articleWriteRequest !== undefined ? articleWriteRequest : {}) : (articleWriteRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(articleWriteRequest, localVarRequestOptions, configuration)
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1048,15 +1104,15 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
          */
         findArticleList: async (pageable: Pageable, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'pageable' is not null or undefined
-            if (pageable === null || pageable === undefined) {
-                throw new RequiredError('pageable','Required parameter pageable was null or undefined when calling findArticleList.');
-            }
+            assertParamExists('findArticleList', 'pageable', pageable)
             const localVarPath = `/v1/articles`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -1067,14 +1123,12 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
 
 
     
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1087,15 +1141,15 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
          */
         findFeedbackList: async (pageable: Pageable, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'pageable' is not null or undefined
-            if (pageable === null || pageable === undefined) {
-                throw new RequiredError('pageable','Required parameter pageable was null or undefined when calling findFeedbackList.');
-            }
+            assertParamExists('findFeedbackList', 'pageable', pageable)
             const localVarPath = `/v1/articles/{articleId}/feedback`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -1106,14 +1160,12 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
 
 
     
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1127,20 +1179,18 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
          */
         writeFeedback: async (articleId: number, articleFeedbackRequest: ArticleFeedbackRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'articleId' is not null or undefined
-            if (articleId === null || articleId === undefined) {
-                throw new RequiredError('articleId','Required parameter articleId was null or undefined when calling writeFeedback.');
-            }
+            assertParamExists('writeFeedback', 'articleId', articleId)
             // verify required parameter 'articleFeedbackRequest' is not null or undefined
-            if (articleFeedbackRequest === null || articleFeedbackRequest === undefined) {
-                throw new RequiredError('articleFeedbackRequest','Required parameter articleFeedbackRequest was null or undefined when calling writeFeedback.');
-            }
+            assertParamExists('writeFeedback', 'articleFeedbackRequest', articleFeedbackRequest)
             const localVarPath = `/v1/articles/{articleId}/feedback`
                 .replace(`{${"articleId"}}`, encodeURIComponent(String(articleId)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
+
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
@@ -1149,16 +1199,13 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof articleFeedbackRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(articleFeedbackRequest !== undefined ? articleFeedbackRequest : {}) : (articleFeedbackRequest || "");
+            localVarRequestOptions.data = serializeDataIfNeeded(articleFeedbackRequest, localVarRequestOptions, configuration)
 
             return {
-                url: globalImportUrl.format(localVarUrlObj),
+                url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
@@ -1170,6 +1217,7 @@ export const Class04APIV1ApiAxiosParamCreator = function (configuration?: Config
  * @export
  */
 export const Class04APIV1ApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = Class04APIV1ApiAxiosParamCreator(configuration)
     return {
         /**
          * 게시글 작성 API
@@ -1179,11 +1227,8 @@ export const Class04APIV1ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async articleWrite(articleWriteRequest: ArticleWriteRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await Class04APIV1ApiAxiosParamCreator(configuration).articleWrite(articleWriteRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.articleWrite(articleWriteRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 내가 조회한 게시글 리스트 API. page는 0부터 시작하며, Page, size를 지정하여 호출
@@ -1193,11 +1238,8 @@ export const Class04APIV1ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async findArticleList(pageable: Pageable, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Article>>> {
-            const localVarAxiosArgs = await Class04APIV1ApiAxiosParamCreator(configuration).findArticleList(pageable, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findArticleList(pageable, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 디버깅용
@@ -1207,11 +1249,8 @@ export const Class04APIV1ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async findFeedbackList(pageable: Pageable, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ArticleFeedbackResponse>>> {
-            const localVarAxiosArgs = await Class04APIV1ApiAxiosParamCreator(configuration).findFeedbackList(pageable, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findFeedbackList(pageable, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 피드백 작성 API
@@ -1222,11 +1261,8 @@ export const Class04APIV1ApiFp = function(configuration?: Configuration) {
          * @throws {RequiredError}
          */
         async writeFeedback(articleId: number, articleFeedbackRequest: ArticleFeedbackRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>> {
-            const localVarAxiosArgs = await Class04APIV1ApiAxiosParamCreator(configuration).writeFeedback(articleId, articleFeedbackRequest, options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
+            const localVarAxiosArgs = await localVarAxiosParamCreator.writeFeedback(articleId, articleFeedbackRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
@@ -1236,6 +1272,7 @@ export const Class04APIV1ApiFp = function(configuration?: Configuration) {
  * @export
  */
 export const Class04APIV1ApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = Class04APIV1ApiFp(configuration)
     return {
         /**
          * 게시글 작성 API
@@ -1245,7 +1282,7 @@ export const Class04APIV1ApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         articleWrite(articleWriteRequest: ArticleWriteRequest, options?: any): AxiosPromise<number> {
-            return Class04APIV1ApiFp(configuration).articleWrite(articleWriteRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.articleWrite(articleWriteRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 내가 조회한 게시글 리스트 API. page는 0부터 시작하며, Page, size를 지정하여 호출
@@ -1255,7 +1292,7 @@ export const Class04APIV1ApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         findArticleList(pageable: Pageable, options?: any): AxiosPromise<Array<Article>> {
-            return Class04APIV1ApiFp(configuration).findArticleList(pageable, options).then((request) => request(axios, basePath));
+            return localVarFp.findArticleList(pageable, options).then((request) => request(axios, basePath));
         },
         /**
          * 디버깅용
@@ -1265,7 +1302,7 @@ export const Class04APIV1ApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         findFeedbackList(pageable: Pageable, options?: any): AxiosPromise<Array<ArticleFeedbackResponse>> {
-            return Class04APIV1ApiFp(configuration).findFeedbackList(pageable, options).then((request) => request(axios, basePath));
+            return localVarFp.findFeedbackList(pageable, options).then((request) => request(axios, basePath));
         },
         /**
          * 피드백 작성 API
@@ -1276,7 +1313,7 @@ export const Class04APIV1ApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         writeFeedback(articleId: number, articleFeedbackRequest: ArticleFeedbackRequest, options?: any): AxiosPromise<number> {
-            return Class04APIV1ApiFp(configuration).writeFeedback(articleId, articleFeedbackRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.writeFeedback(articleId, articleFeedbackRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1336,7 +1373,173 @@ export class Class04APIV1Api extends BaseAPI {
     public writeFeedback(articleId: number, articleFeedbackRequest: ArticleFeedbackRequest, options?: any) {
         return Class04APIV1ApiFp(this.configuration).writeFeedback(articleId, articleFeedbackRequest, options).then((request) => request(this.axios, this.basePath));
     }
+}
 
+
+/**
+ * NicknameControllerApi - axios parameter creator
+ * @export
+ */
+export const NicknameControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 각각 랜덤의 prefix, nickname을 가져온다.
+         * @summary 랜덤 닉네임 가져오기 API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        findRandomNickname: async (options: any = {}): Promise<RequestArgs> => {
+            const localVarPath = `/v1/nicknames/random`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 닉네임을 변경한다. 추 후 유료 사용자와 무료 사용자의 격차를 둘 로직이 들어갈 예정임.
+         * @summary 닉네임 변경 API
+         * @param {NicknameUpdateRequest} nicknameUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateNickname: async (nicknameUpdateRequest: NicknameUpdateRequest, options: any = {}): Promise<RequestArgs> => {
+            // verify required parameter 'nicknameUpdateRequest' is not null or undefined
+            assertParamExists('updateNickname', 'nicknameUpdateRequest', nicknameUpdateRequest)
+            const localVarPath = `/v1/nicknames`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(nicknameUpdateRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * NicknameControllerApi - functional programming interface
+ * @export
+ */
+export const NicknameControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = NicknameControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 각각 랜덤의 prefix, nickname을 가져온다.
+         * @summary 랜덤 닉네임 가져오기 API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async findRandomNickname(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NicknameDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.findRandomNickname(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 닉네임을 변경한다. 추 후 유료 사용자와 무료 사용자의 격차를 둘 로직이 들어갈 예정임.
+         * @summary 닉네임 변경 API
+         * @param {NicknameUpdateRequest} nicknameUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateNickname(nicknameUpdateRequest: NicknameUpdateRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateNickname(nicknameUpdateRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * NicknameControllerApi - factory interface
+ * @export
+ */
+export const NicknameControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = NicknameControllerApiFp(configuration)
+    return {
+        /**
+         * 각각 랜덤의 prefix, nickname을 가져온다.
+         * @summary 랜덤 닉네임 가져오기 API
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        findRandomNickname(options?: any): AxiosPromise<NicknameDto> {
+            return localVarFp.findRandomNickname(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 닉네임을 변경한다. 추 후 유료 사용자와 무료 사용자의 격차를 둘 로직이 들어갈 예정임.
+         * @summary 닉네임 변경 API
+         * @param {NicknameUpdateRequest} nicknameUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateNickname(nicknameUpdateRequest: NicknameUpdateRequest, options?: any): AxiosPromise<boolean> {
+            return localVarFp.updateNickname(nicknameUpdateRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * NicknameControllerApi - object-oriented interface
+ * @export
+ * @class NicknameControllerApi
+ * @extends {BaseAPI}
+ */
+export class NicknameControllerApi extends BaseAPI {
+    /**
+     * 각각 랜덤의 prefix, nickname을 가져온다.
+     * @summary 랜덤 닉네임 가져오기 API
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NicknameControllerApi
+     */
+    public findRandomNickname(options?: any) {
+        return NicknameControllerApiFp(this.configuration).findRandomNickname(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 닉네임을 변경한다. 추 후 유료 사용자와 무료 사용자의 격차를 둘 로직이 들어갈 예정임.
+     * @summary 닉네임 변경 API
+     * @param {NicknameUpdateRequest} nicknameUpdateRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NicknameControllerApi
+     */
+    public updateNickname(nicknameUpdateRequest: NicknameUpdateRequest, options?: any) {
+        return NicknameControllerApiFp(this.configuration).updateNickname(nicknameUpdateRequest, options).then((request) => request(this.axios, this.basePath));
+    }
 }
 
 

@@ -12,7 +12,7 @@ import { SCREEN_IDS } from "src/screens/constant";
 import SplashScreen from "src/screens/SplashScreen";
 import DeveloperScreen from "src/screens/DeveloperScreen";
 import { getRootStore } from "src/stores/Store";
-import { identity } from "@shared/utils/common";
+import { identity } from "src/utils/common";
 
 interface IScreenProps {
   id: string;

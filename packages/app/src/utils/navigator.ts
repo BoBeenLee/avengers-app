@@ -10,8 +10,8 @@ import {
 import { SCREEN_IDS } from "src/screens/constant";
 import { pushTransition } from "src/screens/styles/animations";
 import topbars from "src/screens/styles/topbars";
-import colors from "@shared/styles/colors";
-import { delay } from "@shared/utils/common";
+import colors from "src/styles/colors";
+import { delay } from "src/utils/common";
 
 const isLoadingByComponentId: { [key in string]: boolean } = {};
 let currentComponentId: string | null = null;

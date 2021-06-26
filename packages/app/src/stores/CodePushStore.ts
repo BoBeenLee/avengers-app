@@ -4,7 +4,7 @@ import codePush from "react-native-code-push";
 import { firebaseRemoteConfig } from "src/configs/remoteConfig";
 import { storage } from "src/configs/storage";
 import { uniqueID, os, version } from "src/configs/device";
-import { isEmpty, getValue } from "@shared/utils/common";
+import { isEmpty, getValue } from "src/utils/common";
 
 interface ICodePushData {
   codePushBuild: number;

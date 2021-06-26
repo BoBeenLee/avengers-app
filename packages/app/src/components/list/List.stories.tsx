@@ -5,7 +5,7 @@ import { ListRenderItemInfo } from "react-native";
 import styled from "styled-components/native";
 
 import InfiniteList from "src/components/list/InfiniteList";
-import { delay, times } from "@shared/utils/common";
+import { delay, times } from "src/utils/common";
 
 const Container = styled.View``;
 

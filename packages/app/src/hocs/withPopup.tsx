@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 import withBackHandler, { BackHandlerProps } from "src/hocs/withBackHandler";
-import { identity, isEmpty } from "@shared/utils/common";
+import { identity, isEmpty } from "src/utils/common";
 
 type States = {
   PopupComponent: JSX.Element | null;

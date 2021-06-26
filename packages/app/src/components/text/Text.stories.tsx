@@ -10,8 +10,8 @@ import {
   Bold13,
   Bold14,
   Regular12
-} from "@shared/components/text/Typographies";
-import colors from "@shared/styles/colors";
+} from "src/components/text/Typographies";
+import colors from "src/styles/colors";
 
 const Container = styled.View`
   flex-direction: column;

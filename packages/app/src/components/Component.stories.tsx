@@ -3,8 +3,8 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import styled from "styled-components/native";
 
-import { Regular12 } from "@shared/components/text/Typographies";
-import colors from "@shared/styles/colors";
+import { Regular12 } from "src/components/text/Typographies";
+import colors from "src/styles/colors";
 import ErrorBoundary from "src/components/ErrorBoundary";
 import BuggyCounter from "src/components/__mocks__/BuggyCounter";
 

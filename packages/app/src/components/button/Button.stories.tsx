@@ -4,7 +4,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 import ScaleableButton from "src/components/button/ScaleableButton";
-import { Bold12 } from "@shared/components/text/Typographies";
+import { Bold12 } from "src/components/text/Typographies";
 
 const CenterView = styled.View`
   justify-content: center;

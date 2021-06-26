@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import styled from "styled-components/native";
 
-import ListLoading from "@shared/components/loading/ListLoading";
+import ListLoading from "src/components/loading/ListLoading";
 
 const Container = styled.View`
   flex-direction: column;

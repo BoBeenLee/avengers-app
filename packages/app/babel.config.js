@@ -13,9 +13,9 @@ module.exports = {
       {
         root: ["."],
         extensions: [".js", ".ios.js", ".android.js", ".ts", ".tsx"],
-        "alias": {
-          "@shared": "../shared/lib"
-        }
+        // "alias": {
+        //   "@shared": "../shared/lib"
+        // }
       }
     ]
   ]

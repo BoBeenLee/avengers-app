@@ -13,9 +13,9 @@ import {
   Bold18,
   Regular15,
   Medium15
-} from "@shared/components/text/Typographies";
+} from "src/components/text/Typographies";
 import { IStore } from "src/stores/Store";
-import { IToastStore } from "@shared/stores/ToastStore";
+import { IToastStore } from "src/stores/ToastStore";
 import { SCREEN_IDS } from "src/screens/constant";
 import { pop, showStackModal, dismissAllModals } from "src/utils/navigator";
 import colors from "src/styles/colors";

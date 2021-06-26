@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 
-import colors from "@shared/styles/colors";
-import { omit } from "@shared/utils/common";
+import colors from "src/styles/colors";
+import { omit } from "src/utils/common";
 
 type FontType = "BOLD" | "MEDIUM" | "REGULAR";
 

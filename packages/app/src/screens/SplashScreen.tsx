@@ -3,15 +3,12 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import styled from "styled-components/native";
 
-import XEIcon from "@shared/components/icon/XEIcon";
-import { Bold12, Bold20 } from "@shared/components/text/Typographies";
-import images from "@shared/images";
-import { test } from "@shared/sharedTest";
-import { test as testAPI } from "@shared/apis/test";
+import XEIcon from "src/components/icon/XEIcon";
+import { Bold12, Bold20 } from "src/components/text/Typographies";
+import images from "src/images";
 import ScaleableButton from "src/components/button/ScaleableButton";
 import { IStore } from "src/stores/Store";
 import { iosStatusBarHeight } from "src/configs/device";
-import HelloworldButton from "src/components/button/HelloworldButton";
 import DeveloperScreen from "src/screens/DeveloperScreen";
 
 interface IInject {
@@ -67,7 +64,6 @@ class SplashScreen extends React.PureComponent<IInject, IStates> {
 
   public componentDidMount() {
     this.props.store.initializeApp();
-    testAPI();
   }
 
   public render() {
@@ -76,13 +72,7 @@ class SplashScreen extends React.PureComponent<IInject, IStates> {
         <ScaleableButton>
           <Name>Hello</Name>
         </ScaleableButton>
-        <Name>
-          {this.props.store!.appStateStatus}123{test()}
-        </Name>
-        <HelloworldButton
-          name={this.state.name}
-          onHelloWorld={this.onHelloWorld}
-        />
+        <Name>{this.props.store!.appStateStatus}123</Name>
         <LottieView
           style={{
             width: 100,

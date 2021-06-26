@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, FlatListProps } from "react-native";
 
-import ListLoading from "@shared/components/loading/ListLoading";
+import ListLoading from "src/components/loading/ListLoading";
 
 export interface IFooterSpinnerList<T>
   extends Omit<FlatListProps<T>, "ListFooterComponent"> {

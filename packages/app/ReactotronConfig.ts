@@ -8,8 +8,8 @@ import Reactotron, {
   trackGlobalErrors
 } from "reactotron-react-native";
 
-import { IStore } from "./src/stores/Store";
-import { identity } from "@shared/utils/common";
+import { IStore } from "src/stores/Store";
+import { identity } from "src/utils/common";
 
 export const isReactotron = () => {
   return __DEV__;

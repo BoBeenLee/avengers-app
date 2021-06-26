@@ -1,4 +1,4 @@
-import colors from "@shared/styles/colors";
+import colors from "src/styles/colors";
 
 const baseTopBar = (name = "") => ({
   animate: true,

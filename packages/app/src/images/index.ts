@@ -1,5 +1,8 @@
-// tslint:disable:object-literal-sort-keys
+import listLoading from "./loading.inline.svg";
+
 const images = {
-  animation: require("./animation.json")
+  animation: require("./animation.json"),
+  listLoading
 };
+
 export default images;
