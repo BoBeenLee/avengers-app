@@ -29,7 +29,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakaod6ab40960028f40e85b1765b95599f2c</string>
+				<string>kakao7a8339dbe1a51419eb185e5548f424ee</string>
 				<string>fb1902652103167623</string>
 			</array>
 		</dict>
@@ -63,10 +63,10 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>KAKAO_APP_KEY</key>
-	<string>d6ab40960028f40e85b1765b95599f2c</string>
+	<string>7a8339dbe1a51419eb185e5548f424ee</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>kakaod6ab40960028f40e85b1765b95599f2c</string>
+		<string>7a8339dbe1a51419eb185e5548f424ee</string>
 		<string>kakaokompassauth</string>
 		<string>storykompassauth</string>
 		<string>kakaolink</string>
