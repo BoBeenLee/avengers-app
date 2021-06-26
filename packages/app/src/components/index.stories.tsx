@@ -4,4 +4,5 @@ import "src/components/input/Input.stories";
 import "src/components/list/List.stories";
 import "src/components/loading/Loading.stories";
 import "src/components/text/Text.stories";
+import "src/components/card/Card.stories";
 import "src/components/Component.stories";

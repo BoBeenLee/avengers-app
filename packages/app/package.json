@@ -61,6 +61,7 @@
     "@react-native-firebase/remote-config": "^11.4.1",
     "@react-native-seoul/kakao-login": "^3.3.2",
     "axios": "^0.19.2",
+    "dayjs": "^1.8.35",
     "hoist-non-react-statics": "^3.3.0",
     "i18next": "^17.0.10",
     "jwt-decode": "^2.2.0",
