@@ -39,7 +39,7 @@ interface IStates {
   currentStyle?: TextStyle | null;
 }
 
-class OSMGTextInput extends React.PureComponent<IProps, IStates> {
+class RNTextInput extends React.PureComponent<IProps, IStates> {
   public static defaultProps: Partial<IProps> = {
     focusStyle: {
       color: colors.gray700
@@ -114,4 +114,4 @@ class OSMGTextInput extends React.PureComponent<IProps, IStates> {
   };
 }
 
-export default OSMGTextInput;
+export default RNTextInput;

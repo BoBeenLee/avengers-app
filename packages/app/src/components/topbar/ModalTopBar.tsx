@@ -6,6 +6,6 @@ export default class ModalTopBar extends React.Component<
   Omit<ITopBarProps, "iconName">
 > {
   public render() {
-    return <TopBar {...this.props} iconName="close" />;
+    return <TopBar {...this.props} iconName="close" iconColor={"#666"} />;
   }
 }

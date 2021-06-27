@@ -1,33 +1,45 @@
 import LottieView from "lottie-react-native";
 import { inject, observer } from "mobx-react";
 import React from "react";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
-import XEIcon from "src/components/icon/XEIcon";
-import { Bold12, Bold20 } from "src/components/text/Typographies";
+import { Bold15, Bold20 } from "src/components/text/Typographies";
 import images from "src/images";
-import ScaleableButton from "src/components/button/ScaleableButton";
 import { IStore } from "src/stores/Store";
 import ContainerWithStatusBar from "src/components/ContainerWithStatusBar";
 import colors from "src/styles/colors";
-import TopBar from "src/components/topbar/TopBar";
-import IconButton from "src/components/button/IconButton";
+import ModalTopBar from "src/components/topbar/ModalTopBar";
+import RNTextInput from "src/components/input/RNTextInput";
 
 type Inject = {
   store: IStore;
+};
+
+type States = {
+  content: string;
 };
 
 const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.primary};
 `;
 
-const ChatButton = styled(IconButton)`
-  width: 20px;
-  height: 20px;
+const CompleteButton = styled.TouchableOpacity``;
+
+const CompleteButtonText = styled(Bold15)<{ $disabled: boolean }>`
+  ${({ $disabled }) =>
+    $disabled
+      ? css`
+          color: #ccc;
+        `
+      : css`
+          color: #666;
+        `}
 `;
 
-const Name = styled(Bold20)`
-  color: #000;
+const Content = styled(RNTextInput)`
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-top: 24px;
 `;
 
 @inject(
@@ -36,27 +48,51 @@ const Name = styled(Bold20)`
   })
 )
 @observer
-class RegisterSecretScreen extends React.PureComponent<Inject> {
+class RegisterSecretScreen extends React.PureComponent<Inject, States> {
   constructor(props: Inject) {
     super(props);
+
+    this.state = {
+      content: ""
+    };
   }
 
   public render() {
+    const { content } = this.state;
     return (
       <Container>
-        <TopBar
-          title={"    "}
+        <ModalTopBar
+          title={" "}
           titleStyle={{
             flex: 1
           }}
-          RightComponent={<ChatButton source={images.icChat} />}
+          RightComponent={
+            <CompleteButton>
+              <CompleteButtonText $disabled={!Boolean(content)}>
+                완료
+              </CompleteButtonText>
+            </CompleteButton>
+          }
+          onBackPress={this.onBackPress}
         />
-        <ScaleableButton>
-          <Name>RegisterSecretScreen</Name>
-        </ScaleableButton>
+        <Content
+          placeholder={"무엇이든 너의 생각을 들려줘."}
+          value={content}
+          onChangeText={this.onChangeText}
+        />
       </Container>
     );
   }
+
+  private onChangeText = (text: string) => {
+    this.setState({
+      content: text
+    });
+  };
+
+  private onBackPress = () => {
+    // TODO
+  };
 }
 
 export default RegisterSecretScreen;
