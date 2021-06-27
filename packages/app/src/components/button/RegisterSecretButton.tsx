@@ -7,6 +7,7 @@ import images from "src/images";
 
 type Props = {
   style?: ViewProps["style"];
+  onPress?: () => void;
 };
 
 const Container = styled.View`
@@ -29,10 +30,10 @@ const Content = styled(IconButton)`
 `;
 
 const RegisterSecretButton = (props: Props) => {
-  const { style } = props;
+  const { style, onPress } = props;
   return (
     <Container style={style}>
-      <Content source={images.icEdit} />
+      <Content source={images.icEdit} onPress={onPress} />
     </Container>
   );
 };

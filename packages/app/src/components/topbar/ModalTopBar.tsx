@@ -1,11 +1,11 @@
 import React from "react";
 
-import OSMGTopBar, { ITopBarProps } from "src/components/topbar/OSMGTopBar";
+import TopBar, { ITopBarProps } from "src/components/topbar/TopBar";
 
 export default class ModalTopBar extends React.Component<
   Omit<ITopBarProps, "iconName">
 > {
   public render() {
-    return <OSMGTopBar {...this.props} iconName="close" />;
+    return <TopBar {...this.props} iconName="close" />;
   }
 }

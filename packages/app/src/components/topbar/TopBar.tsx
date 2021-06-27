@@ -14,8 +14,8 @@ export interface ITopBarProps {
   style?: ViewProps["style"];
   title?: string;
   titleStyle?: TextStyle;
-  onBackPress: () => void;
-  iconName: XEIconType;
+  onBackPress?: () => void;
+  iconName?: XEIconType;
   iconColor?: string;
   RightComponent?: JSX.Element;
 }
@@ -42,7 +42,7 @@ const Title = styled(Bold18)`
   color: #666666;
 `;
 
-function OSMGTopBar({
+function TopBar({
   style: containerStyle,
   title,
   titleStyle,
@@ -58,15 +58,17 @@ function OSMGTopBar({
           {title}
         </Title>
       )}
-      <IconButton
-        iconName={iconName}
-        iconColor={iconColor}
-        iconSize={24}
-        onPress={onBackPress}
-      />
+      {onBackPress && iconName ? (
+        <IconButton
+          iconName={iconName}
+          iconColor={iconColor}
+          iconSize={24}
+          onPress={onBackPress}
+        />
+      ) : null}
       {RightComponent ? RightComponent : null}
     </Container>
   );
 }
 
-export default OSMGTopBar;
+export default TopBar;

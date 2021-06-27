@@ -14,6 +14,7 @@ import DeveloperScreen from "src/screens/DeveloperScreen";
 import SignInScreen from "src/screens/SignInScreen";
 import { getRootStore } from "src/stores/Store";
 import { identity } from "src/utils/common";
+import MainScreen from "./MainScreen";
 
 interface IScreenProps {
   id: string;
@@ -57,6 +58,10 @@ const screens: IScreenProps[] = [
   {
     Component: SignInScreen,
     id: SCREEN_IDS.SignInScreen
+  },
+  {
+    Component: MainScreen,
+    id: SCREEN_IDS.MainScreen
   }
 ];
 
