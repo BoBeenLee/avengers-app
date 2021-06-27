@@ -27,6 +27,8 @@ const Container = styled.View`
   width: 100%;
   height: ${TOP_BAR_HEIGHT}px;
   padding-horizontal: 16px;
+  padding-vertical: 10px;
+  background-color: ${colors.primary};
 `;
 
 const IconButton = styled(XEIconButton)`
@@ -37,14 +39,14 @@ const IconButton = styled(XEIconButton)`
 `;
 
 const Title = styled(Bold18)`
-  color: ${colors.warmBlue};
+  color: #666666;
 `;
 
 function OSMGTopBar({
   style: containerStyle,
   title,
   titleStyle,
-  iconColor = colors.warmBlue,
+  iconColor = "#666666",
   iconName,
   RightComponent,
   onBackPress
@@ -59,7 +61,7 @@ function OSMGTopBar({
       <IconButton
         iconName={iconName}
         iconColor={iconColor}
-        iconSize={29}
+        iconSize={24}
         onPress={onBackPress}
       />
       {RightComponent ? RightComponent : null}

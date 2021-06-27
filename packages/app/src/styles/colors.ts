@@ -40,7 +40,8 @@ const colors = {
   purple550: "#7747db",
   purple600: "#6433cc",
   purple700: "#46248f",
-  sunflower: "#ffc310"
+  sunflower: "#ffc310",
+  primary: "#FAF4E6"
 };
 
 export default colors;
