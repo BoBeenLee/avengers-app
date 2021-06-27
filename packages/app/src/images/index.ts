@@ -7,7 +7,8 @@ const images = {
   icChat: require("./ic_chat.png"),
   icEdit: require("./ic_edit.png"),
   icClose: require("./ic_close.png"),
-  bgEmpty: require("./bg_empty.png")
+  bgEmpty: require("./bg_empty.png"),
+  icMockProfile: require("./ic_mock_profile.png")
 };
 
 export default images;

@@ -76,6 +76,11 @@ export const Medium12 = styled(Medium)`
   line-height: 18px;
 `;
 
+export const Medium13 = styled(Medium)`
+  font-size: 13px;
+  line-height: 19px;
+`;
+
 export const Medium14 = styled(Medium)`
   font-size: 14px;
   line-height: 20px;
