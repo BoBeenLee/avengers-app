@@ -3,7 +3,8 @@ const SCREEN_IDS = {
   SplashScreen: "app.SplashScreen",
   DeveloperScreen: "app.DeveloperScreen",
   SignInScreen: "app.SignInScreen",
-  MainScreen: "app.MainScreen"
+  MainScreen: "app.MainScreen",
+  RegisterSecretScreen: "app.RegisterSecretScreen"
 };
 
 export { SCREEN_IDS };
