@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 import ScaleableButton from "src/components/button/ScaleableButton";
+import RegisterSecretButton from "src/components/button/RegisterSecretButton";
 import { Bold12 } from "src/components/text/Typographies";
 
 const CenterView = styled.View`
@@ -19,4 +20,7 @@ storiesOf("Button", module)
         <Bold12>Hello World</Bold12>
       </ScaleableButton>
     );
+  })
+  .add("RegisterSecretButton", () => {
+    return <RegisterSecretButton />;
   });

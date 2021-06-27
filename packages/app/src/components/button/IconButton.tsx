@@ -2,7 +2,7 @@ import React from "react";
 import { ImageProps, TouchableOpacityProps } from "react-native";
 import styled from "styled-components/native";
 
-interface IProps extends TouchableOpacityProps {
+export interface Props extends TouchableOpacityProps {
   source: ImageProps["source"];
   iconStyle?: ImageProps["style"];
 }
@@ -18,7 +18,7 @@ const Icon = styled.Image`
   resize-mode: contain;
 `;
 
-export default function IconButton({ source, iconStyle, ...props }: IProps) {
+export default function IconButton({ source, iconStyle, ...props }: Props) {
   return (
     <Container {...props}>
       <Icon source={source} style={iconStyle} />
