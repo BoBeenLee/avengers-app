@@ -30,7 +30,7 @@ const start = () => {
     topBar: topbars.emptyTopBar()
   });
 
-  setRoot({ nextComponentId: SCREEN_IDS.RegisterSecretScreen });
+  setRoot({ nextComponentId: SCREEN_IDS.MainScreen });
 };
 
 const setRoot = async ({ nextComponentId }: { nextComponentId: string }) => {
