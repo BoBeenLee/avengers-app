@@ -10,7 +10,12 @@ type Props = {
   onPress?: () => void;
 };
 
-const Container = styled.View`
+const Container = styled(IconButton).attrs({
+  iconStyle: {
+    width: 24,
+    height: 24
+  }
+})`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -31,11 +36,7 @@ const Content = styled(IconButton)`
 
 const RegisterSecretButton = (props: Props) => {
   const { style, onPress } = props;
-  return (
-    <Container style={style}>
-      <Content source={images.icEdit} onPress={onPress} />
-    </Container>
-  );
+  return <Container style={style} source={images.icEdit} onPress={onPress} />;
 };
 
 export default RegisterSecretButton;

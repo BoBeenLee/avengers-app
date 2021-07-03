@@ -6,12 +6,12 @@ import styled from "styled-components/native";
 import XEIcon from "src/components/icon/XEIcon";
 import { Bold12, Bold20 } from "src/components/text/Typographies";
 import images from "src/images";
-import ScaleableButton from "src/components/button/ScaleableButton";
 import { IStore } from "src/stores/Store";
 import ContainerWithStatusBar from "src/components/ContainerWithStatusBar";
 import colors from "src/styles/colors";
 import TopBar from "src/components/topbar/TopBar";
 import IconButton from "src/components/button/IconButton";
+import RegisterSecretEmpty from "src/components/empty/RegisterSecretEmpty";
 
 type Inject = {
   store: IStore;
@@ -21,13 +21,18 @@ const Container = styled(ContainerWithStatusBar)`
   background-color: ${colors.primary};
 `;
 
+const Content = styled.View`
+  display: flex;
+  flex: 1;
+`;
+
 const ChatButton = styled(IconButton)`
   width: 20px;
   height: 20px;
 `;
 
-const Name = styled(Bold20)`
-  color: #000;
+const RegisterSecretEmptyView = styled(RegisterSecretEmpty)`
+  margin-top: 64px;
 `;
 
 @inject(
@@ -51,12 +56,16 @@ class MainScreen extends React.PureComponent<Inject> {
           }}
           RightComponent={<ChatButton source={images.icChat} />}
         />
-        <ScaleableButton>
-          <Name>Hello</Name>
-        </ScaleableButton>
+        <Content>
+          <RegisterSecretEmptyView onRegister={this.onRegister} />
+        </Content>
       </Container>
     );
   }
+
+  private onRegister = () => {
+    // TODO
+  };
 }
 
 export default MainScreen;
