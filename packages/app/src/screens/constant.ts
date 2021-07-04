@@ -4,6 +4,7 @@ const SCREEN_IDS = {
   DeveloperScreen: "app.DeveloperScreen",
   SignInScreen: "app.SignInScreen",
   MainScreen: "app.MainScreen",
+  SecretDetailScreen: "app.SecretDetailScreen",
   RegisterSecretScreen: "app.RegisterSecretScreen"
 };
 
